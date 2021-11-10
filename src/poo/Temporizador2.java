@@ -2,8 +2,8 @@ package poo;
 
 import javax.swing.Action;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;//Libreria para el temporizador
-import java.awt.event.*;//Libreria para la interface ActionListener 
+import javax.swing.Timer;//Lib temporizador
+import java.awt.event.*;//Lib interface ActionListener 
 import java.awt.Toolkit;//Caracteristicas windows
 import java.util.*;
 
