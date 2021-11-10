@@ -1,6 +1,5 @@
 package poo;
 
-import javax.swing.Action;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;//Lib temporizador
 import java.awt.event.*;//Lib interface ActionListener 
@@ -12,7 +11,7 @@ public class Temporizador2 {
 	public static void main(String[] args) {
 		// Mensaje en consola con la hora cada 5 segundos
 		//Igual que en Temporizador.java pero con una clase interna (DameLaHora2)
-		Reloj miReloj = new Reloj(3000, true);
+		Reloj1 miReloj = new Reloj1(3000, true);
 		miReloj.enMarcha();
 		JOptionPane.showMessageDialog(null, "Pulsa Aceptar para detener");
 		System.exit(0);
@@ -20,8 +19,8 @@ public class Temporizador2 {
 }	
 
 
-class Reloj{
-	public Reloj (int intervalo,boolean sonido) {//CONSTRUCTOR
+class Reloj1{
+	public Reloj1 (int intervalo,boolean sonido) {//CONSTRUCTOR
 		this.intervalo = intervalo;
 		this.sonido = sonido;
 	}

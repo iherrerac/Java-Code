@@ -1,56 +1,47 @@
 package poo;
 
-import javax.swing.Timer; //Lib Temporizador
-import java.awt.event.*; // Lib Listener
-import java.beans.ConstructorProperties;
-import java.util.Date; // Hora
-import javax.swing.JOptionPane;//Ventana
-import java.awt.Toolkit; // sonido windows
+
+import javax.swing.JOptionPane;
+import javax.swing.Timer;//Lib temporizador
+import java.awt.event.*;//Lib interface ActionListener 
+import java.awt.Toolkit;//Caracteristicas windows
+import java.util.*;
 
 public class Temporizador3 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		boolean sonido=true;
-		int delay;
-		String optSonido; 
-		//Toma de opciones por pantalla
-		delay = 1000*Integer.parseInt(JOptionPane.showInputDialog("Introduce delay: "));
-		optSonido= JOptionPane.showInputDialog("Sonido? (Si/No)");
-		
-		if (optSonido.equalsIgnoreCase("si")) sonido=true; 
-		else if (optSonido.equalsIgnoreCase("no")) sonido = false; 
-		
-		//Instanciamos Reloj y lo ponemos en marcha
-		Reloj2 miReloj = new Reloj2(sonido, delay);
-		miReloj.enMarcha();		
+		// Mensaje en consola con la hora cada 3 segundos
+		//Ahora con una clase interna LOCAL (DameLaHora2)
+		Reloj miReloj = new Reloj();
+		miReloj.enMarcha(7000,true);
+		JOptionPane.showMessageDialog(null, "Pulsa Aceptar para detener");
+		System.exit(0);
 	}
 }	
 
-class Reloj2{
-	
-	//Constructor
-	public Reloj2(boolean sonido, int delay){
-		this.delay = delay;
-		this.sonido = sonido;
-	}
-	
-	public void enMarcha() {
-		ActionListener Oyente = new Listener();
-		Timer miTemp1 = new Timer(delay, Oyente);
-		miTemp1.start();
-		JOptionPane.showMessageDialog(null, "Pulsa para detener");
-		System.exit(0);
-	}
-	private boolean sonido;
-	private int delay;
-	
-	private class Listener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			Date hora= new Date();
-			System.out.println("Hora: "+hora);
-			if(sonido) Toolkit.getDefaultToolkit().beep();
-		}
-	}
-}
 
+class Reloj{
+	//prescindimos del constructor, por lo que lo da por defecto
+//	public Reloj (int intervalo,boolean sonido) {//CONSTRUCTOR
+//		this.intervalo = intervalo;
+//		this.sonido = sonido;
+//	}
+
+		
+		public void enMarcha(int intervalo,boolean sonido) {
+			//Clase interna LOCAL
+			 class DameLaHora2 implements ActionListener{
+				public void actionPerformed(ActionEvent evento) {
+					Date hora = new Date();
+					System.out.println("Hora: "+ hora);
+					if(sonido) Toolkit.getDefaultToolkit().beep(); //sonido Windows
+				}
+			}
+			//Declaramos el Listener esta vez con polimorfismo 
+			ActionListener oyente = new DameLaHora2();
+			Timer miTemporizador= new Timer(this.intervalo,oyente);
+			miTemporizador.start();
+		}
+		private int intervalo;
+
+}
