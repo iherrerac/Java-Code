@@ -6,7 +6,7 @@ public class Marcos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Marcos1 miMarco = new Marcos1();
+		Marcos2 miMarco = new Marcos2();
 		
 		//Hacer visible
 		miMarco.setVisible(true);
@@ -17,10 +17,18 @@ public class Marcos {
 
 }
 
-class Marcos1 extends JFrame{
+class Marcos2 extends JFrame{
 	
-	public Marcos1() {
-		//Establece tamaño de la ventana
-		setSize (500,300);
+	public Marcos2() {
+		
+		//(x,y,ancho,largo)
+		setBounds (30,100,500,300);
+		//Titulo
+		setTitle ("Mi ventana");
+		//No se puede redimensionar, 
+		setResizable (false);
+		// Aparece maximizado o no en pantalla activo o inactivo
+		//setExtendedState(JFrame.MAXIMIZAD_BOTH);
+		
 	}
 }
