@@ -6,7 +6,7 @@ public class Marcos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Marcos2 miMarco = new Marcos2();
+		Marcosx miMarco = new Marcosx();
 		
 		//Hacer visible
 		miMarco.setVisible(true);
@@ -17,9 +17,9 @@ public class Marcos {
 
 }
 
-class Marcos2 extends JFrame{
+class Marcosx extends JFrame{
 	
-	public Marcos2() {
+	public Marcosx() {
 		
 		//(x,y,ancho,largo)
 		setBounds (30,100,500,300);
