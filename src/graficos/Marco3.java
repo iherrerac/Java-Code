@@ -15,7 +15,7 @@ public class Marco3 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		M4 MiMarco = new M4();
+		M1 MiMarco = new M1();
 		MiMarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
