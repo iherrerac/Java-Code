@@ -11,7 +11,7 @@ import java.awt.Dimension;
 
 //Dibujar en Marco
 
-public class Marco3 {
+public class Marco4 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -21,18 +21,22 @@ public class Marco3 {
 
 }
 
-class M1 extends JFrame{
+class M4 extends JFrame{
 
-	public M1() {
+	public M4() {
 		setVisible(true);
 		setTitle("Dibujar en Marco");
 		setBounds(200,200,600,400);
-		P1 MiPanel = new P1();
+		P4 MiPanel = new P4();
+		//Cambia el color de fondo del marco
+		MiPanel.setBackground(Color.GRAY);
+		//Cambia el color de fondo del marco por el del por defecto del sistema.
+		MiPanel.setBackground(SystemColor.window);
 		add(MiPanel);
 	}
 }
 
-class P1 extends JPanel{
+class P4 extends JPanel{
 	public void paintComponent(Graphics g) {
 		//Llamada al metodo Padre para hacer lo que sea que este programado
 		super.paintComponent(g);
@@ -49,13 +53,21 @@ class P1 extends JPanel{
 		Graphics2D g2 =(Graphics2D)g;
 		//Dibuja Rectangulo especificando coordenadas (x,y,width,Heigth)
 		Rectangle2D Rectangulo = new Rectangle2D.Double(100,100,200,150);
-		//Llamamos al metodo draw de nuestro objeto Graphics2D los parametros del rectangulo
-		g2.draw(Rectangulo);
+		//Color del trazo: Constante estatica de la clase Color
+		g2.setPaint(Color.RED);
+		//Llamamos al metodo fill para que pinte  nuestro rectangulo relleno de color
+		g2.fill(Rectangulo);
 		
 		//Dibuja Una ELipse a partir de un rectangulo 
 		Ellipse2D Elipse = new Ellipse2D.Double();
 		Elipse.setFrame(Rectangulo);
-		g2.draw(Elipse);
+		//Color del trazo. Instanciamos un objeto de clase Color con metodo RGB
+		g2.setPaint(new Color(0,140,200));
+		//Color del trazo brighter para dar mas brillo, se puede aplicar varias veces
+		g2.setPaint(new Color(0,140,200).brighter().brighter());
+		//Color del trazo brighter para dar mas oscuro, se puede aplicar varias veces
+		g2.setPaint(new Color(0,140,200).darker());
+		g2.fill(Elipse);
 		//Dibujar una linea, la vamos a instanciar directamente
 		g2.draw(new Line2D.Double(100,100,300,250));
 		
@@ -64,6 +76,9 @@ class P1 extends JPanel{
 		double  centroEnY= Rectangulo.getCenterY();
 		double radio = 150;
 		Ellipse2D Circulo = new Ellipse2D.Double();
+		//Otra forma de establecer el color, instanciando un objeto clase Color
+		Color MiColor4 = new Color (0,150,50);
+		g2.setPaint(MiColor4);
 		Circulo.setFrameFromCenter(centroEnX,centroEnY,centroEnX+radio,centroEnY+radio);
 		g2.draw(Circulo);
 	
