@@ -6,6 +6,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.SystemColor;
+import java.awt.Image;
+import javax.imageio.*;
+import java.io.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
@@ -99,7 +102,21 @@ class Paneles extends JPanel{
 		g2.setFont(new Font("Arial",Font.ITALIC,16));
 		g2.setColor(Color.RED);
 		g2.drawString("Otro ejemplo de fuente",120,180);
+		
+		//Capturar, duplicar y Almacenar Imagenes en una variable
+		//File MiImagen = new File("src/graficos/icono.jpg");
+		
+		try {
+		//imagen= ImageIO.read(MiImagen);
+			imagen= ImageIO.read(new File("src/graficos/icono.jpg"));
+		}catch(IOException e) {
+			System.out.println("La imagen no ha podido encontrarse");
+		}
+		
+		g.drawImage(imagen, 170,190,null);
 	}
+	
+	Image imagen;
 }
 
 	
