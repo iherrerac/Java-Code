@@ -103,21 +103,55 @@ class Paneles extends JPanel{
 		g2.setColor(Color.RED);
 		g2.drawString("Otro ejemplo de fuente",120,180);
 		
-		//Capturar, duplicar y Almacenar Imagenes en una variable
-		//File MiImagen = new File("src/graficos/icono.jpg");
+		//Capturar y Almacenar Imagenes en una variable, y pintarla
 		
+		//File MiImagen = new File("src/graficos/icono.jpg");
 		try {
 		//imagen= ImageIO.read(MiImagen);
 			imagen= ImageIO.read(new File("src/graficos/icono.jpg"));
 		}catch(IOException e) {
 			System.out.println("La imagen no ha podido encontrarse");
 		}
-		
 		g.drawImage(imagen, 170,190,null);
+		
+		//Duplicar un area para copiar una imagen (xinicial,yinicial, width,height,xfinal,yfinal) 
+		
+		//El metodo getWidth y getHeight esperan unobejto tipo Observer, que es quien esta esperando que se dibuje la imagen
+		//En  nuestro caso es la lamina, como estan siendo usadas dentro de la lamina, se puede poner this
+		g.copyArea(170,190,imagen.getWidth(this),imagen.getHeight(this),0,60);
 	}
 	
 	Image imagen;
 }
 
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
