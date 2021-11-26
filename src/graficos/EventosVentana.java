@@ -1,6 +1,7 @@
 package graficos;
 
 import javax.swing.JFrame;
+import java.awt.Frame;
 import javax.swing.JPanel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -32,6 +33,7 @@ class MiMarco8 extends JFrame{
 		setVisible(true);
 		add(new MiPanel8());
 		addWindowListener(new ListenerVentana());
+		addWindowStateListener(new ListenerVentana());
 	}
 }
 
@@ -53,5 +55,13 @@ class ListenerVentana extends WindowAdapter{
 	public void windowDeiconified(WindowEvent e){
 		System.out.println("Ventana estado Normal");	
 	}
-	
+	//Controla Tambien el Cambio de estado
+	public void windowStateChanged(WindowEvent e) {
+		System.out.println("La ventana ha cambiado de estado");
+		if (e.getNewState()==Frame.MAXIMIZED_BOTH) {
+			System.out.println("Ventana Maximizada");
+		}else if (e.getNewState()==Frame.ICONIFIED) {
+			System.out.println("Ventana Minimizada");
+		}
+	}
 }
