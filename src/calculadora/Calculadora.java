@@ -2,6 +2,8 @@ package calculadora;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 /*
@@ -26,6 +28,8 @@ class Marco extends JFrame{
 	//Posicion
 	int[] setX = {210, 15, 80, 145, 210, 15, 80, 145, 210, 15, 80, 145, 210, 15, 80, 145, 210};
 	int[] setY = {350, 155, 155, 155, 155, 220, 220, 220, 220, 285, 285, 285, 285, 350, 350, 350, 350};
+	//Indicamos los botones que son numeros
+	int[] BotonesSonNumeros = {1,2,3,5,6,7,9,10,11,14};
 	double operador1 = 0;
 	double operador2 = 0;
 	double resultado = 0;
@@ -42,6 +46,7 @@ class Marco extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Cerrar proceso al cerrar ventana
  		initPantalla();
 		initBotones();
+		eventoNumeros();
 		Panel P1 = new Panel();
 		add(P1);
 	}
@@ -71,7 +76,23 @@ class Marco extends JFrame{
 			add(botones[i]);
 		}
 	}
+	//Añadir a cada boton numerico su ActionListener y su metodo actionEvent
+	private void eventoNumeros() {
+		
+		for (int i = 0; i < BotonesSonNumeros.length; i++) {
+			int numboton = BotonesSonNumeros[i];
+			//declaramos el listener sobre la marcha y sobrescribimos
+			botones[BotonesSonNumeros[i]].addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					pantalla.setText(textoBotones[numboton]);
+					System.out.println(textoBotones[numboton]);
+				}
+			});
 
+		}
+	}
 }
 
 class Panel extends JPanel{
