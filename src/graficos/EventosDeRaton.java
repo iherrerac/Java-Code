@@ -4,8 +4,9 @@ import javax.swing.JPanel;
 import java.awt.event.*;
 
 /*
- * Aplicacion que indica por consola cuando se ha hecho click en el marco y otros eventos de MouseListener
- * Tambien desde Clase Adaptadora
+ * Aplicacion que indica por consola cuando se ha hecho click en el marco y 
+ * otros eventos de MouseListener Tambien desde Clase Adaptadora
+ * Otra clase con la interfaz MouseMotionListener para controlar el arrastre 
  */
 
 public class EventosDeRaton {
@@ -25,8 +26,11 @@ class MiMarco10 extends JFrame{
 		//Instanciamos en el marco el Listener que es la fUente de nuestro evento
 		EventoDeRaton Raton1 = new EventoDeRaton();
 		EventoDeRaton2 Raton2 = new EventoDeRaton2();
+		EventoDeRaton3 Raton3 = new EventoDeRaton3();
 		addMouseListener(Raton1);
 		addMouseListener(Raton2);
+		//Descomentar para el control de arrastre y movimiento de raton
+		//addMouseMotionListener(Raton3);
 	}
 }
 
@@ -35,13 +39,20 @@ class EventoDeRaton implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("Haz hecho click.");
+		System.out.println("Haz hecho click en coordenada X: " + e.getX() + " Coordenada Y: "+e.getY());
+		//Numero de click ( doble click, triple click
+		System.out.println(e.getClickCount());		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println("Haz pulsado el boton del raton.");
+		//SAber con que boton del raton ha pulsado ( 1024,4096 o 1)
+		System.out.println(e.getModifiersEx());
+		if (e.getModifiersEx()==MouseEvent.BUTTON1_DOWN_MASK) {
+			System.out.println("Estas pulsando el boton izquierdo");
+		}
 	}
 
 	@Override
@@ -75,6 +86,23 @@ class EventoDeRaton2 extends MouseAdapter{
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println("Saliste del Marco (Desde Clase Adaptadora)");
+	}
+	
+}
+
+//Clase para controlar el arrastre y movimiento del raton
+class EventoDeRaton3 implements MouseMotionListener{
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("Estas arrastrando.");
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("Estas moviendo el raton.");
 	}
 	
 }
