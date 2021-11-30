@@ -3,11 +3,9 @@ package graficos;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import java.awt.event.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Graphics;
-import javax.swing.*;
 import java.awt.Color;
 
 /*
@@ -33,7 +31,7 @@ class MiMarco13 extends JFrame{
 		setVisible(true);
 		setTitle("Multiples Fuentes");
 		setBounds(150, 100, 600,400);
-		add(new MiPanel13());
+		add(new MiPanel14());
 	}
 }
 
@@ -74,15 +72,14 @@ class MiPanel13 extends JPanel{
 			
 		}
 	}
-	
+
+	// Aqui lo reqalizamos con la interfaz ActionListener
 	public class ColorFondoListener implements ActionListener{
 		public ColorFondoListener(Color c) {
 			ColorFondo=c;
 		}
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				//setColorFondo[i];
 				System.out.println(ColorFondo);
 				setBackground(ColorFondo);
 			}
