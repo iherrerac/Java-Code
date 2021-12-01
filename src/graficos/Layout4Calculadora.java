@@ -92,7 +92,10 @@ class LaminaCalculadora extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			operacion=e.getActionCommand();
 			calcular(Double.parseDouble(pantalla.getText()));
-			ultimaOperacion=operacion;
+//			if(operacion != "=") {
+//				ultimaoperacion=operacion;	
+//			}
+			
 			principio=true;
 		}
 		
@@ -123,8 +126,9 @@ class LaminaCalculadora extends JPanel{
 			System.out.println("Borrar: ");
 			break;
 		case "=":
+			resultado
 			pantalla.setText(""+resultado);
-			System.out.println("Resultado: ");
+			System.out.println("Resultado: "+resultado);
 			break;
 		default:
 			break;
