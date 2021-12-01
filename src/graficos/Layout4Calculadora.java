@@ -126,7 +126,6 @@ class LaminaCalculadora extends JPanel{
 			System.out.println("Borrar: ");
 			break;
 		case "=":
-			resultado
 			pantalla.setText(""+resultado);
 			System.out.println("Resultado: "+resultado);
 			break;

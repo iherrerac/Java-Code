@@ -26,6 +26,7 @@ class MiMarco15 extends JFrame{
 		setVisible(true);
 		setBounds(600,350,600,300);
 		MPanel15 P15= new MPanel15();
+		
 		/*
 		 * Indicamos al Layout que se alinee a la izquierda, asi como la separacion de los
 		 * elementos en la lamina y lo seteamos en el panel. El constructor podemos establecer
@@ -34,7 +35,6 @@ class MiMarco15 extends JFrame{
 	
 		FlowLayout Disposicion = new FlowLayout(FlowLayout.LEFT,20,150);
 		P15.setLayout(Disposicion);
-		
 		add(P15);
 	}
 	
