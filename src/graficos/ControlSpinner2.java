@@ -38,21 +38,35 @@ class Panel33 extends JPanel{
 		control= new JSpinner(new SpinnerNumberModel(5,0,10,2));
 		//Inicializamos el Spinner con la clase que nos hemos creado sobrescribiendo
 		control1= new JSpinner(new MiModeloJSpinner());
+		//El tercer Spinner lo vamos a generar igual pero con una clase anonima
+		control2= new JSpinner(new SpinnerNumberModel (5,0,10,2){
+			public Object getNextValue() {
+				//Al poner la palabra super delante llamamos al metodo getPreviosValue de la clase padre
+				return super.getPreviousValue();
+			}
+		
+			public Object getPreviousValue() {
+				return super.getNextValue();
+			}	
+		});
 		//El selector se adapta al tamaño del primer elemento, para establecer otro tamaño 
 		//usamos setpreferredsize. Hay que pasarle un objeto de tipo dimension
 		Dimension d = new Dimension(120,20);
 		control.setPreferredSize(d);
 		control1.setPreferredSize(d);
+		control2.setPreferredSize(d);
 		add(control);
 		add(control1);
+		add(control2);
 	}
-	//Clases internas anonimas
+	//Clase interna normal 
 	private class MiModeloJSpinner extends SpinnerNumberModel{
 		public MiModeloJSpinner() {		//Sobrescribir metodo que nos devuelve el valor siguiente para que nos devuelva el valor previo
 
 			//Llamamos al constructor de SpinnerNumberModel (valor inicial,min, max, cuanto avanza) 
 			super(5,0,10,2);
 		}
+		//sobrescritura de metodo devuelve un Object
 		public Object getNextValue() {
 			//Al poner la palabra super delante llamamos al metodo getPreviosValue de la clase padre
 			return super.getPreviousValue();
@@ -64,4 +78,5 @@ class Panel33 extends JPanel{
 	}
 	JSpinner control;
 	JSpinner control1;
+	JSpinner control2;
 }
