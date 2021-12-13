@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
  * Cambiar tamaño texto con Radio button version corta co bucle y metodo de creacion de botones
  */
 
-public class CasillaRadioButton3 {
+public class A28CasillaRadioButton3 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

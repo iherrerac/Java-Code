@@ -8,7 +8,7 @@ import javax.swing.JRadioButton;
  * Botones de radio, como declararlos
  */
 
-public class CasillaRadioButton {
+public class A26CasillaRadioButton {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

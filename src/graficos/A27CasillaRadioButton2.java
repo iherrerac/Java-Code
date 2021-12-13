@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
  * Cambiar tamaño texto con Radio button version larga
  */
 
-public class CasillaRadioButton2 {
+public class A27CasillaRadioButton2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
