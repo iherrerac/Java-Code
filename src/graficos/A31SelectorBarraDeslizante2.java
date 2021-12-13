@@ -15,7 +15,7 @@ import java.awt.Font;
 /*
  * Aplicacion que cambia el tamaño de letra con una barra deslizante
  */
-public class SelectorBarraDeslizante2 {
+public class A31SelectorBarraDeslizante2 {
 
 	public static void main(String[] args) {
 		Marco31 m31 = new Marco31();

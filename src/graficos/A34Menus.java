@@ -2,13 +2,14 @@ package graficos;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 import java.awt.BorderLayout;
 
-public class Menus {
+public class A34Menus {
 
 	public static void main(String[] args) {
 		Marco34 m34 = new Marco34();
@@ -27,6 +28,8 @@ class Marco34 extends JFrame{
 
 class Panel34 extends JPanel{
 	public Panel34() {
+		setLayout(new BorderLayout());
+		miArea = new JTextPane();
 		menu= new JMenuBar();
 		JMenu archivo = new JMenu("Archivo");
 		JMenu edicion = new JMenu("Edición");
@@ -53,8 +56,10 @@ class Panel34 extends JPanel{
 		menu.add(archivo);
 		menu.add(edicion);
 		menu.add(herramientas);
-		add(menu);
+		add(menu,BorderLayout.NORTH);
+		add(miArea,BorderLayout.CENTER);
 
 	}
 	private JMenuBar menu;
+	private JTextPane miArea;
 }

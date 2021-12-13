@@ -7,7 +7,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.Font;
 
-public class SelectorBarraDeslizante {
+public class A30SelectorBarraDeslizante {
 
 	public static void main(String[] args) {
 		Marco30 m30 = new Marco30();

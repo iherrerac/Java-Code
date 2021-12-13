@@ -13,7 +13,7 @@ import java.awt.GraphicsEnvironment;
 /*
  * Como construir varios Spinner
  */
-public class ControlSpinner {
+public class A32ControlSpinner {
 
 	public static void main(String[] args) {
 		Marco32 m32 = new Marco32();

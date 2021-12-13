@@ -14,7 +14,7 @@ import java.awt.GraphicsEnvironment;
  * Cambiar el comportamiento de los botones del Spinner y funcionen al reves
  * Clases internas anonimas: Video 99
  */
-public class ControlSpinner2 {
+public class A33ControlSpinner2 {
 
 	public static void main(String[] args) {
 		Marco33 m33 = new Marco33();
