@@ -13,7 +13,7 @@ import java.awt.Color;
  * multiples fuentes ( Botones, combinacion de teclas)
  */
 
-public class EventosMultiplesFuentes {
+public class A13EventosMultiplesFuentes {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

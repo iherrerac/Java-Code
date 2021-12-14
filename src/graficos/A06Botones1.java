@@ -11,10 +11,10 @@ import java.awt.Color;
  * implementando la interfaz ActionListener en la Lamina
  */
 
-public class Botones1 {
+public class A06Botones1 {
 
 	public static void main(String[] args) {
-		Marcos7 M6 = new Marcos7();
+		Marcos6 M6 = new Marcos6();
 		M6.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}

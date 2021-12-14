@@ -11,7 +11,7 @@ import java.awt.Color;
  * mediante una objeto Listener ColorFondo
  */
 
-public class Botones2 {
+public class A07Botones2 {
 
 	public static void main(String[] args) {
 		Marcos7 M7 = new Marcos7();
