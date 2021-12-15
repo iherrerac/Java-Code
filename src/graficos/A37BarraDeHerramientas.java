@@ -1,20 +1,18 @@
 package graficos;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
 import java.awt.event.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
-import javax.swing.AbstractAction;
+
 import java.awt.Color;
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
 /*
  * Video 111
- * Modificamos el ejemplo A13 en vez de Botones , una barra de herramientas
+ * Modificamos el ejemplo A13 en vez de Botones , una barra de menus y una de herramientas
+ * Agregamos una opcion mas para salir de la aplciacion instanciando AbstractAction de manera Anonima
  * Aplicacion que cambia el color de fondo ( Listener) desde
  * multiples fuentes ( Botones, combinacion de teclas)
  */
@@ -24,6 +22,7 @@ public class A37BarraDeHerramientas {
 	public static void main(String[] args) {
 		MiMarco37 m37 = new MiMarco37();
 		m37.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
+		
 	}
 
 }
@@ -43,15 +42,12 @@ class MiMarco37 extends JFrame{
 class MiPanel37 extends JPanel{
 	public MiPanel37() {
 		setLayout(new BorderLayout());
-		//initBotones();
+		p37Norte = new JPanel();
+		p37Norte.setLayout(new BorderLayout());
+		add(p37Norte,BorderLayout.NORTH);
 		initMenu();
 	}
 	
-//	public void paintComponent(Graphics g) {
-//		super.paintComponent(g);
-//	}
-	
-
 	
 	private void initBotones() {
 		//Array Posiciones Botones
@@ -98,18 +94,38 @@ class MiPanel37 extends JPanel{
 	private void initMenu() {
 		String[] menuNombre = {"Color","Edicion"};
 		JMenuBar menuBar = new JMenuBar();
+		JToolBar menuHerraColor = new JToolBar();
 		for (int j = 0; j < menuNombre.length; j++) {
 			JMenu menu = new JMenu(menuNombre[j]);
+			
 			if (menuNombre[j].equals("Color")) {
 				for (int i = 0; i < menuColorNombreItems.length; i++) {
-					JMenuItem menuItem= new JMenuItem( menuColorNombreItems[i], new ImageIcon(menuColorRutaIconos[i]));
-					menu.add(menuItem);
+					//Agregamos elementos JMenu( No JMenuItems) con el Action ColorFondoListener2
+					menu.add(new ColorFondoListener2(menuColorNombreItems[i],new ImageIcon (menuColorRutaIconos[i]),setColorFondo[i]));
+					//Contruimos la barra de herramientas
+					menuHerraColor.add(new ColorFondoListener2(menuColorNombreItems[i],new ImageIcon (menuColorRutaIconos[i]),setColorFondo[i]));
 				}
 			}
 			menuBar.add(menu);
 		}
-		add(menuBar,BorderLayout.NORTH);
 		
+		//Vamos a crear la opcion en el menu de herramientas para salir de la aplicacion
+		Action accionSalir = new AbstractAction("Salir",new ImageIcon("src/graficos/icono.jpg")) {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		};
+
+		//Agregamos un separador
+		menuHerraColor.addSeparator();
+		//Agregamos nueva opcion exit al menu
+		menuHerraColor.add(accionSalir);
+		//p37Norte.setJMenuBar(menuBar);
+		p37Norte.add(menuBar,BorderLayout.NORTH);
+		p37Norte.add(menuHerraColor,BorderLayout.CENTER);
+		//add(menuBar,BorderLayout.NORTH);
+		//TODO Si queremos que la barra pueda arrastrase, hay que indicarla BorderLAyout
 	}
 
 	
@@ -132,7 +148,6 @@ class MiPanel37 extends JPanel{
 			putValue(Action.SMALL_ICON, icono);
 			putValue(Action.SHORT_DESCRIPTION,"Poner la lamina de color: "+nombre);
 			putValue("Color_de_fondo", c);
-		
 		}
 		
 		@Override
@@ -146,6 +161,7 @@ class MiPanel37 extends JPanel{
 	String[] menuColorNombreItems = {"azul","rojo","verde","blanco","negro","Rosa"};
 	String[] menuColorRutaIconos = {"src/graficos/icono.jpg","src/graficos/icono.jpg","src/graficos/icono.jpg","src/graficos/icono.jpg","src/graficos/icono.jpg","src/graficos/icono.jpg"};
 	Color[] setColorFondo = {Color.BLUE,Color.RED,Color.GREEN,Color.WHITE,Color.BLACK,Color.PINK};
+	JPanel p37Norte;
 }
 
 
