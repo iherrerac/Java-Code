@@ -7,8 +7,9 @@ import javax.swing.Spring;
 import javax.swing.SpringLayout;
 
 /*
- * Video 116
+ * Video 116,117
  * Un marco con 3 Botones con muelles entre ellos
+ * Agregamos tb un muelle rigido entre los botones
  */
 
 public class A39LayoutSpringLayout {
@@ -46,13 +47,16 @@ class Panel39 extends JPanel{
 		
 		//Creamos solo 1 muelle. si no los creeamos pone un boton encima de otro
 		Spring muelle = Spring.constant(0, 10, 100);//Los parametros no estan claros
+		//Agregamos muelle rigido entre botones, para que al redimensionar no cambie la
+		//distancia entre botones
+		Spring muelleRigido = Spring.constant(10);//Un solo parametro, muelle rigido, ancho del muelle
 	
 				
 		//Colocamos el muelle, hay que colocarlos en los extremos de los componentes
 		//EL muelle une border WEST del boton1 con el borde WEST de la lamina (this)
 		miSpring.putConstraint(SpringLayout.WEST, boton1, muelle, SpringLayout.WEST, this);
-		miSpring.putConstraint(SpringLayout.WEST, boton2, muelle, SpringLayout.EAST, boton1);
-		miSpring.putConstraint(SpringLayout.WEST, boton3, muelle, SpringLayout.EAST, boton2);
+		miSpring.putConstraint(SpringLayout.WEST, boton2, muelleRigido, SpringLayout.EAST, boton1);
+		miSpring.putConstraint(SpringLayout.WEST, boton3, muelleRigido, SpringLayout.EAST, boton2);
 		miSpring.putConstraint(SpringLayout.EAST, this, muelle, SpringLayout.EAST, boton3);
 	}
 }
