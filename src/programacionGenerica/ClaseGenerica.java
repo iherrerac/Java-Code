@@ -16,6 +16,13 @@ public class ClaseGenerica <T> {//Indicamos que la clase es generica con el para
 		primero = nuevoValor;
 	}
 	
+	//Metodo que recibe como argumento un generico de tipo empleado
+	//puede recibir un tipo empleado o cualquier subclase que herede usando un tipo comodin "? extends"
+	public static void imprimirTrabajador(ClaseGenerica<? extends Empleado> p) {
+		Empleado primero = p.getPrimero();
+		System.out.println(primero);
+	}
+	
 	public T getPrimero() {
 		return primero;
 	}
