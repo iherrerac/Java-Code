@@ -15,7 +15,7 @@ import java.lang.*;
  * Video 168 Threads: Aplicacion Monotarea que crea una pelota que rebota por los 
  * borders de una lamina. vamos convertirlo en multitarea, que use varios hilos de ejecucion
  * Video 169 Inturrumpir la ejecucion de un hilo
- * Video 170 Interrupcion de varios hilos
+ * Video 170 Interrupcion de varios hilos individuales.
  */
 
 public class usoThreads2 {
@@ -45,6 +45,15 @@ class PelotaHilos1 implements Runnable{
 		while(!Thread.currentThread().isInterrupted()) {// Interrumpe el hilo actual
 			pelota.mueve_pelota(componente.getBounds());
 			componente.paint(componente.getGraphics());//repinta la lamina
+			try {
+				Thread.sleep(4);//bloquea el hilo
+			} catch (InterruptedException e) {
+				//e.printStackTrace();//imprime el estado de la pila
+				//System.out.println("Hilo bloqueado imposible interrupcion");
+				//System.exit(0);
+				Thread.currentThread().interrupt();
+			}
+			
 		}
 		System.out.println("Estado del hilo al finalizar: "+Thread.currentThread().isInterrupted());
 	}
@@ -114,29 +123,84 @@ class LaminaPelota1 extends JPanel{
 //Marco
 class MarcoRebote1 extends JFrame{
 	public MarcoRebote1() {
-		setBounds(600,300,400,350);
+		setBounds(600,300,600,350);
 		setTitle("Rebotes");
 		lamina=new LaminaPelota1();
 		add(lamina,BorderLayout.CENTER);
 		JPanel laminaBotones1=new JPanel();
-		//boton comenzar
-		ponerBoton(laminaBotones1,"Dale!",new ActionListener() {
-			public void actionPerformed(ActionEvent evento) {
-				comienza_el_juego();
+		arranca1=new JButton("Hilo1");
+		arranca1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent evento) {
+					comienza_el_juego(evento);
+				}
 			}
-		});
+		);
+		laminaBotones1.add(arranca1);
+		
+		arranca2=new JButton("Hilo2");
+		arranca2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent evento) {
+					comienza_el_juego(evento);
+				}
+			}
+		);
+		laminaBotones1.add(arranca2);
+		
+		arranca3=new JButton("Hilo3");
+		arranca3.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent evento) {
+					comienza_el_juego(evento);
+				}
+			}
+		);
+		laminaBotones1.add(arranca3);
+		
+		
+//		//boton comenzar
+//		ponerBoton(laminaBotones1,"Dale!",new ActionListener() {
+//			public void actionPerformed(ActionEvent evento) {
+//				comienza_el_juego();
+//			}
+//		});
 		//Boton salir
 		ponerBoton(laminaBotones1,"Salir",new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
 				System.exit(0);
 			}
 		});
-		//Boton detener
-		ponerBoton(laminaBotones1,"Detener",new ActionListener() {
+//		//Boton detener
+//		ponerBoton(laminaBotones1,"Detener",new ActionListener() {
+//			public void actionPerformed(ActionEvent evento) {
+//				detener();
+//			}
+//		});
+		//Boton detener1
+		detener1= new JButton("Detener1");
+		detener1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-				detener();;
+			detener(evento);
 			}
 		});
+		laminaBotones1.add(detener1);
+		
+		//Boton detener2
+		detener2= new JButton("Detener2");
+		detener2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evento) {
+			detener(evento);
+			}
+		});
+		laminaBotones1.add(detener2);
+		
+		//Boton detener3
+		detener3= new JButton("Detener3");
+		detener3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evento) {
+			detener(evento);
+			}
+		});
+		laminaBotones1.add(detener3);
+		
 		add(laminaBotones1,BorderLayout.SOUTH);
 	}
 	
@@ -148,13 +212,22 @@ class MarcoRebote1 extends JFrame{
 	}
 	
 	//Añade pelota y la bota 3000 veces
-	public void comienza_el_juego() {
+	public void comienza_el_juego(ActionEvent e) {
 		Pelota1 pelota=new Pelota1();
 		lamina.add(pelota);
 		//Multitarea
 		Runnable r= new PelotaHilos1(pelota,lamina);
-		t= new Thread(r);
-		t.start();
+		
+		if(e.getSource().equals(arranca1)){
+			t1 = new Thread(r);
+			t1.start();
+		}else if (e.getSource().equals(arranca2)){
+			t2= new Thread(r);
+			t2.start();
+		}else {
+			t3= new Thread(r);
+			t3.start();
+		}
 		
 		//MonoTarea
 //		for(int i=1;i<3000;i++) {
@@ -171,11 +244,16 @@ class MarcoRebote1 extends JFrame{
 		
 	}
 	//Detener hilo
-	public void detener() {
+	public void detener(ActionEvent e) {
 		//t.stop(); //Obsoleto
 		//Cuando hacemos una peticion de interrupcion lanza una interrupteException
-		t.interrupt();
+		if(e.getSource().equals(detener1)) {
+			t1.interrupt();
+		}else if(e.getSource().equals(detener2)){
+			t2.interrupt();
+		}else t3.interrupt();
 	}
 	private LaminaPelota1 lamina;
-	private Thread t;
+	private Thread t1,t2,t3;
+	private JButton arranca1,arranca2,arranca3,detener1,detener2,detener3;
 }
