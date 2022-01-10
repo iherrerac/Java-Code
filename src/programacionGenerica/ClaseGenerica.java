@@ -3,6 +3,8 @@ package programacionGenerica;
 /*
  * Indicar el parametro generico , se suele usar la T, la U y la K
  * Video 165
+ * video 167 clases genericas herencia y tipos comodin
+ * Agregamos el metodo imprimeEmpleado usando un parametro de tipo comodin
  */
 
 public class ClaseGenerica <T> {//Indicamos que la clase es generica con el parametro T
