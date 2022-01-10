@@ -1,7 +1,9 @@
 package threads;
 
 /*
- * * Video 171. Sincronizacion de hilos
+ * Video 171. Sincronizacion de hilos
+ * Video 172. Sincronizacion de hilos II: Vamos a pasarle como parametro el hilo que queremos
+ * hacerle join.
  */
 
 public class SincronizandoHilos {
@@ -9,6 +11,8 @@ public class SincronizandoHilos {
 	public static void main(String[] args) {
 		HilosVarios hilo1= new HilosVarios();
 		HilosVarios hilo2= new HilosVarios();
+		HilosVarios2 hilo3= new HilosVarios2(hilo1);
+		hilo3.start();
 		hilo1.start();
 		//Hasta que no muera el primer hilo no comienza el segundo
 		try {
@@ -16,9 +20,15 @@ public class SincronizandoHilos {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
+		//Hasta que no muera el segundo hilo no comienza el sysout
 		hilo2.start();
-		System.out.println("Terminadas las tareas");// Realmente no estan terminadas, estan lanzadas
+		try {
+			hilo2.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("Terminadas las tareas");
 	}
 
 }
@@ -36,5 +46,31 @@ class HilosVarios extends Thread{
 			}
 		}
 	}
+
+}
+
+class HilosVarios2 extends Thread{
+	public HilosVarios2(Thread hilo) {
+		this.hilo = hilo;
+	}
+	
+	public void run() {
+		try {
+			hilo.join();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		for (int i = 0; i < 15; i++) {
+			System.out.println("Ejecutando hilo: "+getName());
+			
+			try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	private Thread hilo;
 
 }
