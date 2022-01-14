@@ -152,5 +152,4 @@ class ComparadorArticulos implements Comparator<Articulo2>{
 	public int compare(Articulo2 o1, Articulo2 o2) {
 		return o1.getDescripcion().compareTo(o2.getDescripcion());
 	}
-	
 }
